@@ -1,0 +1,33 @@
+#home{
+    border: 2px solid black;
+    height: 650px; 
+    display: flex;
+    justify-content: space-around;
+}
+
+.h{
+    border: 2px solid black;
+    height: 30px; 
+   width: 50px;
+   margin-top: 10px;
+    position: relative;
+   right: 160px;
+}
+.l{
+    border: 2px solid black;
+    height: 30px; 
+   width: 40px;
+   margin-top: 10px;
+   position: relative;
+   left: 550px;
+}
+
+.s{
+    border: 2px solid black;
+    height: 30px; 
+   width: 50px;
+   margin-top: 10px;
+   position: relative;
+   left: 180px;
+   
+}
