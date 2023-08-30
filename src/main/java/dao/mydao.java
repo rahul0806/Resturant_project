@@ -3,6 +3,7 @@ package dao;
 import java.util.List;
 
 import dto.Customer;
+import dto.food_item;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
@@ -18,6 +19,12 @@ public class mydao {
 	{
 		transaction.begin();
 		manager.persist(c);
+		transaction.commit();
+	}
+	public void save(food_item item)
+	{
+		transaction.begin();
+		manager.persist(item);
 		transaction.commit();
 	}
 
@@ -38,6 +45,21 @@ public class mydao {
 	     else
 	    	 return list.get(0);
 	
+	}
+	public List<food_item> fetchAllfooditem(){
+		return manager.createQuery("select x from food_item x").getResultList();
+	}
+	
+	public food_item find(int id)
+	{
+		return manager.find(food_item.class,id);
+	}
+	
+	public void delete(food_item item)
+	{
+		transaction.begin();
+		manager.remove(item);
+		transaction.commit();
 	}
 
 }
