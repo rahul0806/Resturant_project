@@ -45,6 +45,11 @@
 			<artifactId>commons-codec</artifactId>
 			<version>1.15</version>
 </dependency>
+  	<dependency>
+  		<groupId>demo2</groupId>
+  		<artifactId>claci</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
   </dependencies>
 
   <build>

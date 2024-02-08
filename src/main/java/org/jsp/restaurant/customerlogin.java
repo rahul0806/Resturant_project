@@ -13,7 +13,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-@WebServlet("/loginbutton")
+import jakarta.servlet.http.HttpSession;
+@WebServlet("/loginbutton")	
 public class customerlogin extends HttpServlet {
      
 	protected void doPost(HttpServletRequest req,HttpServletResponse resp) throws IOException, ServletException {
@@ -22,7 +23,12 @@ public class customerlogin extends HttpServlet {
 		mydao dao=new mydao();
 		if(email.equals("admin@jsp.com") && password.equals("admin"))
 		{
+			
+			
 			resp.getWriter().print("<h1>login success</h1>");
+			//getting and setting the attribute of the session
+			HttpSession session=req.getSession();
+			session.setAttribute("admin","admin");
 			//this is logic to send to next page
 			req.getRequestDispatcher("Adminhome.html").include(req,resp);
 		}else {
@@ -38,7 +44,7 @@ public class customerlogin extends HttpServlet {
 			if(password.equals(customer.getPassword()))
 			{
 				resp.getWriter().print("<h1>login success</h1>");
-				req.getRequestDispatcher("Customer.html").include(req,resp);
+				req.getRequestDispatcher("customer.html").include(req,resp);
 			}
 			else
 			{

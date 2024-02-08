@@ -13,7 +13,16 @@ import jakarta.servlet.http.HttpServletResponse;
 @MultipartConfig
 public class add_item  extends HttpServlet{
       protected void doPost(HttpServletRequest req,HttpServletResponse resp) throws IOException, ServletException
+     
       {
+		if(req.getSession().getAttribute("admin")==null)
+		{
+			resp.getWriter().print("<h1>Invalid Session</h1>");
+			req.getRequestDispatcher("Login.html").include(req, resp);
+		}
+		else
+		{
+      
     	    String item_name= req.getParameter("name");
     	    double item_price= Double.parseDouble(req.getParameter("price"));
     	    int quantity=Integer.parseInt(req.getParameter("quantity"));
@@ -24,7 +33,7 @@ public class add_item  extends HttpServlet{
     	    item.setName(item_name);
     	    item.setPicture(image);
     	    item.setPrice(item_price);
-    	    item.setQuantity(quantity);
+    	    item.setStock(quantity);
     	    item.setType(type);
     	    
     	  
@@ -34,5 +43,6 @@ public class add_item  extends HttpServlet{
     	    resp.getWriter().print("<h1 sstyle='color:green'>Item added successfully</h1>");
     	    req.getRequestDispatcher("Adminhome.html").include(req, resp);
     	    
+      }
       }
 }

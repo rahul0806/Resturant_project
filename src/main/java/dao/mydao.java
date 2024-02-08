@@ -3,6 +3,7 @@ package dao;
 import java.util.List;
 
 import dto.Customer;
+import dto.customer_food_item;
 import dto.food_item;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -18,6 +19,13 @@ public class mydao {
 	public void save(Customer c)
 	{
 		transaction.begin();
+		manager.persist(c);
+		transaction.commit();
+	}
+	public void save(customer_food_item c)
+	{
+		transaction.begin();
+		
 		manager.persist(c);
 		transaction.commit();
 	}
@@ -38,7 +46,7 @@ public class mydao {
 	}
 	
 	public Customer fetchmobile(long mobile) {
-		 Query query = manager.createQuery("select x from Customer x where number=?1").setParameter(1, mobile);
+		 Query query = manager.createQuery("select x from Customer x where mobile=?1").setParameter(1, mobile);
 	     List<Customer> list = query.getResultList();
 	     if(list.isEmpty())
 	    	 return null;
@@ -61,5 +69,43 @@ public class mydao {
 		manager.remove(item);
 		transaction.commit();
 	}
+	public void update(food_item item)
+	{
+		transaction.begin();
+		manager.merge(item);
+		transaction.commit();
+	}
+	
+	public void update(Customer customer)
+	{
+		transaction.begin();
+		manager.merge(customer);
+		transaction.commit();
+	}
+	public void update(customer_food_item customer)
+	{
+		transaction.begin();
+		manager.merge(customer);
+		transaction.commit();
+	}
+	public List<Customer> fetchAllCustomer()
+	{
+		return manager.createQuery("select x from Customer x").getResultList();		
+	}
+	
+
+	
+	public Customer findcustomer(int id) {
+		// TODO Auto-generated method stub
+		return manager.find(Customer.class,id);
+	}
+	public void delete(Customer customer) {
+		// TODO Auto-generated method stub
+		transaction.begin();
+		manager.remove(customer);
+		transaction.commit();
+		
+	}
+
 
 }

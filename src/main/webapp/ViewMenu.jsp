@@ -31,13 +31,13 @@
 <td><%=item.getName()%></td>
 <td><%=item.getPrice()%></td>
 <td><%=item.getType()%></td>
-<td><%=item.getQuantity()%></td>
+<td><%=item.getStock()%></td>
 <td>
    <%String base64 = Base64.encodeBase64String(item.getPicture());%> 
    <img height="150px" width="150px" alt="unknown"
 	src="data:image/jpeg;base64,<%=base64%>">
 </td>
-<td><a href="edit"><button>Edit</button></a></td>
+<td><a href="edit?id=<%=item.getId()%>"><button>Edit</button></a></td>
                       
 <td><a href="delete?id=<%=item.getId()%>"><button>Delete</button></a></td>
 </tr>

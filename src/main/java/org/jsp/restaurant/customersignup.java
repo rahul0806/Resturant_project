@@ -44,13 +44,12 @@ import jakarta.servlet.ServletException;
 			{
 			
 			Customer c=new Customer();
-			 c.setFullname(fullName);
+			 c.setName(fullName);
 			 c.setAge(age);
 			 c.setEmail(email);
 			 c.setDob(dob);
 			 c.setPassword(password);
 			 c.setPicture(picture);
-			 c.setNumber(mobile);
 			 m.save(c);
 			 resp.getWriter().print("<h1 style='color:red'>Account created successfully</h1>");
 			 req.getRequestDispatcher("Login.html").include(req,resp);

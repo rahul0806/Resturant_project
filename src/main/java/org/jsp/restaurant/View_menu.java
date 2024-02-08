@@ -17,19 +17,19 @@ import jakarta.servlet.http.HttpServletResponse;
 @WebServlet("/viewmenu")
 public class View_menu  extends HttpServlet{
 
-	protected void doGet(HttpServletRequest req,HttpServletResponse resp) throws IOException, ServletException {
-	   
+	protected void service(HttpServletRequest req,HttpServletResponse resp) throws IOException, ServletException {
+	    
+
+		if(req.getSession().getAttribute("admin")==null)
+		{
+			resp.getWriter().print("<h1>Invalid Session</h1>");
+			req.getRequestDispatcher("Login.html").include(req, resp);
+		}
+		else
+		{
 		mydao dao=new mydao();
 		List<food_item> items=dao.fetchAllfooditem();
-//		resp.getWriter().print("<html><body><h1>Menu</h1><body><html>");
-//		resp.getWriter().print("<table border ='1'");
-//		resp.getWriter().print
-//		("<tr><th>Name</th><th>type</th><th>Price</th><Quantity</th><th>edit</th><th>delete</th><th>edit</th></tr>");
-//		for (food_item item : items) {
-//			resp.getWriter().print(
-//					"<tr><th>"+item.getName()+"</th><th>"+item.getType()+"</th><th>"+item.getPrice()+"</th><th>"+item.getQuantity()+"</th><th><button>Edit</button></th><th><button>Delete</button></th></tr>");
-//		}
-//		resp.getWriter().print("</table></body></html>");
+
 		if(items.isEmpty())
 		{
 			resp.getWriter().print("<h1 style='color:red'> no item found</h1>)");
@@ -39,7 +39,7 @@ public class View_menu  extends HttpServlet{
 			req.setAttribute("list", items);
 			req.getRequestDispatcher("ViewMenu.jsp").include(req,resp);
 		}
-	}
+	}}
      
 	}
 

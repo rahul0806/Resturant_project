@@ -18,7 +18,7 @@ public class food_item {
 private int id;
 private String name;
 private double price;
-private  int quantity;
+private  int stock;
 private String type;
 @Lob
 @Column(columnDefinition = "MEDIUMBLOB")
